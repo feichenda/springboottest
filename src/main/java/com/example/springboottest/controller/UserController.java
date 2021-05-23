@@ -33,6 +33,14 @@ public class UserController {
         return list.toString();
     }
 
+    @GetMapping("/findAll")
+    public String findAll() {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("username");
+        List<User> list = userServiceDao.list();
+        return list.toString();
+    }
+
     @GetMapping("/findByName")
     public String find(String name) {
         List<User> list = userServiceDao.list(new QueryWrapper<User>().likeRight("username",name));
